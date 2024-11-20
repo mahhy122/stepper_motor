@@ -14,7 +14,7 @@ void loop() {
 
   //180反度時計回りに回転
   //rotate 180 degrees counterclockwise
-  stp_moto.move(180);
+  stp_moto.move(-180);
   delay(1000);
 
 }
