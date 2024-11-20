@@ -17,6 +17,7 @@ void stp_moto::move(int degree){
     direction = LOW;
   }else{
     direction = HIGH;
+    degree = -degree;
   }
   digitalWrite(_DIR, direction);
   
