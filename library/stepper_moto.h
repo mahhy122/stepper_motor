@@ -5,7 +5,7 @@
 
 class stp_moto{
 public:
-    stp_moto(int STEP, int DIR, int speed);
+    stp_moto(int STEP, int DIR);
 
     void move(int degree = 0); 
 
