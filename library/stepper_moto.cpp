@@ -8,7 +8,7 @@ stp_moto::stp_moto(int STEP, int DIR){
   pinMode(_DIR, OUTPUT);
 }
 
-void stp_moto::move(int degree){
+void stp_moto::move(int degree,int speed){
   bool direction = LOW;
   //向きの判定
   //define direction
@@ -31,6 +31,7 @@ void stp_moto::move(int degree){
     digitalWrite(_STEP,HIGH); 
     delay(2); 
     digitalWrite(_STEP,LOW); 
-    delay(2); 
+    delay(2);
   }
+  delay(speed);
 }
