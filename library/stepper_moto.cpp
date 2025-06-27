@@ -3,12 +3,13 @@
 stp_moto::stp_moto(int STEP, int DIR){
   _STEP = STEP;
   _DIR = DIR;
+  lastTime = millis();
   
   pinMode(_STEP, OUTPUT); 
   pinMode(_DIR, OUTPUT);
 }
 
-void stp_moto::move(int degree,int speed){
+void stp_moto::move(int degree){
   bool direction = LOW;
   //向きの判定
   //define direction
@@ -27,11 +28,18 @@ void stp_moto::move(int degree,int speed){
   
   //実行
   //do
+  rotation(step);
+}
+void rotation(int step){
+  int pulseDelay = 2;
   for(int x = 0; x < step; x++) {
-    digitalWrite(_STEP,HIGH); 
-    delay(2); 
-    digitalWrite(_STEP,LOW); 
-    delay(2);
+    unsigned long currentTime = millis();
+    if(currentTime - lastTime <= pulseDelay){
+      digitalWrite(_STEP,HIGH); 
+    }else if(currentTime - lastTime <= pulseDelay*2){
+      digitalWrite(_STEP,LOW);
+    }else{
+      lastTime = currentTime;
+    }
   }
-  delay(speed);
 }
