@@ -12,5 +12,6 @@ public:
 private:
     int _STEP;
     int _DIR;
+    unsigned long lastTime;
 };
 #endif
