@@ -1,14 +1,16 @@
-#include <stepper_moto.h>
+#include <stpMoto.h>
 
 stp_moto::stp_moto(int STEP, int DIR){
   _STEP = STEP;
   _DIR = DIR;
-  
-  pinMode(_STEP, OUTPUT); 
+
+  pinMode(_STEP, OUTPUT);
   pinMode(_DIR, OUTPUT);
+  unsigned long _time1 = 0;
+  
 }
 
-void stp_moto::move(int degree,int speed){
+void stp_moto::move(int degree){
   bool direction = LOW;
   //向きの判定
   //define direction
@@ -28,10 +30,16 @@ void stp_moto::move(int degree,int speed){
   //実行
   //do
   for(int x = 0; x < step; x++) {
-    digitalWrite(_STEP,HIGH); 
-    delay(2); 
-    digitalWrite(_STEP,LOW); 
-    delay(2);
+    if(millis()-_time1 >= 2) {
+      digitalWrite(_STEP,HIGH);
+      Serial.println(1);
+    }
+    if(millis()-_time1 >= 4) {
+      digitalWrite(_STEP,LOW);
+      Serial.println(2);
+    }else{
+      _time1 = millis();
+    }
   }
-  delay(speed);
+  //delay(speed);
 }
